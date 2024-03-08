@@ -11,8 +11,7 @@ export class AppController {
   }
 
   @Get('/user/:name')
-  getUser(@Param('name') name : string): string {
+  getUser(@Param('name') name: string): string {
     return this.appService.getUser(name);
   }
-
 }

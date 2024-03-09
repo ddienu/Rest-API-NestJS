@@ -5,6 +5,8 @@ import { UsersModule } from './users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { HousesController } from './houses/houses.controller';
 import { MessagesModule } from './messages/messages.module';
+import { AuthService } from './auth/auth.service';
+import { AuthController } from './auth/auth.controller';
 import * as dotenv from 'dotenv';
 
 dotenv.config(); //=> Se cargan las variables de entorno del archivo .env
@@ -16,9 +18,10 @@ dotenv.config(); //=> Se cargan las variables de entorno del archivo .env
     MessagesModule,
   ],
   controllers: [
-    AppController,
-    HousesController,
+    AppController
   ],
-  providers: [AppService],
+  providers: [
+    AppService
+  ],
 })
 export class AppModule {}

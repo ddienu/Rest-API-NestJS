@@ -22,6 +22,11 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
+  @Get(':email')
+  async findByEmail(@Param('email') email : string) : Promise<User> {
+    return this.usersService.findByEmail(email);
+  }
+
   @Put(':id')
   async update(@Param('id') id : string, @Body() updateUser : CreateUserDTO){
     return this.usersService.update(id, updateUser);

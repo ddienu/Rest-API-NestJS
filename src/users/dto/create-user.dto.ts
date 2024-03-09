@@ -1,4 +1,5 @@
-import { IsEmail, IsNotEmpty, IsString, Matches } from "class-validator";
+import { IsEmail, IsNotEmpty, IsString, Matches, Validate } from "class-validator";
+import { UniqueEmailValidator } from "../validations/unique-email.validator";
 
 export class CreateUserDTO {
   @IsNotEmpty({
@@ -14,6 +15,7 @@ export class CreateUserDTO {
   //   message : "El correo debe ser ingresado"
   // })
   @IsEmail ({}, {message : "El correo ingresado no es correcto"})
+  @Validate(UniqueEmailValidator, { message: 'El correo ya fue registrado' })
   readonly email: string;
   @IsNotEmpty()
   @IsString()

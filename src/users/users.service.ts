@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from './users.entity';
@@ -28,6 +28,14 @@ export class UsersService {
       return await this.userModel.findById(id);
     } catch (error) {
       throw new NotFoundException('User not found');
+    }
+  }
+
+  async findByEmail(email : string) : Promise<User> {
+    try{
+      return await this.userModel.findOne({email});
+    }catch( error ){
+      throw new HttpException('The email does not match with any user', HttpStatus.NOT_FOUND)
     }
   }
 

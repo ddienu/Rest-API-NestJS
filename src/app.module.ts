@@ -7,6 +7,8 @@ import { HousesController } from './houses/houses.controller';
 import { MessagesModule } from './messages/messages.module';
 import { AuthService } from './auth/auth.service';
 import { AuthController } from './auth/auth.controller';
+import { HousesService } from './houses/houses.service';
+import { HousesModule } from './houses/houses.module';
 import * as dotenv from 'dotenv';
 
 dotenv.config(); //=> Se cargan las variables de entorno del archivo .env
@@ -16,12 +18,15 @@ dotenv.config(); //=> Se cargan las variables de entorno del archivo .env
     UsersModule,
     MongooseModule.forRoot(process.env.DB_URL),
     MessagesModule,
+    HousesModule,
   ],
   controllers: [
-    AppController
+    AppController,
+    // HousesController
   ],
   providers: [
-    AppService
+    AppService,
+    // HousesService
   ],
 })
 export class AppModule {}

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { HousesService } from './houses.service';
 import { House } from './houses.entity';
 import { CreateHouseDTO } from './dto/create-house.dto';
@@ -18,4 +18,21 @@ export class HousesController {
     async findAllHouses(): Promise<House[]>{
         return this.housesService.findAllHouses();
     }
+
+    @Get(':id')
+    async findOne(@Param('id') id : string) : Promise<House>{
+        return this.housesService.findOne(id);
+    }
+
+    @Put(':id')
+    async updateHouse(@Param('id') id : string,  @Body() updateHouse : CreateHouseDTO){
+        return this.housesService.update(id, updateHouse);
+    }
+
+    @Delete('id')
+    async deleteHouse(@Param('id') id : string) : Promise<boolean>{
+        return this.housesService.delete(id);
+    }
 }
+
+
